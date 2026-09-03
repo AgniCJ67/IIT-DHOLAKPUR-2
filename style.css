@@ -28,7 +28,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family:'Outfit', 'Google Sans', 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
     line-height: 1.6;
