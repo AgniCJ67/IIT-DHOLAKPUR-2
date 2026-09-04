@@ -2,40 +2,46 @@
 window.addEventListener('scroll', () => {
     // 1. Shrink Navbar
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
+    const scrollY = window.scrollY;
+    
+    if (scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
 
     // 2. Scroll Progress Bar at the top
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
+    const scrolled = (scrollY / height) * 100;
     document.getElementById("scroll-progress").style.width = scrolled + "%";
 
-    // 3. Highlight Active Link on Scroll
+    // 3. Highlight Active Link on Scroll (Fixed for Placements)
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-links a.nav-item");
     
     let current = "";
 
     sections.forEach((section) => {
-        // -150 offset to trigger the highlight slightly before you hit the section
-        const sectionTop = section.offsetTop - 150; 
-        if (pageYOffset >= sectionTop) {
-            current = section.getAttribute("id");
+        // Offset determines how early the highlight triggers before hitting the section
+        const sectionTop = section.offsetTop - 250; 
+        
+        if (scrollY >= sectionTop) {
+            const sectionId = section.getAttribute("id");
+            // ONLY update 'current' if this section actually has a nav-item pill link
+            if (document.querySelector(`.nav-links a.nav-item[href="#${sectionId}"]`)) {
+                current = sectionId;
+            }
         }
     });
 
+    // Apply the highlight
     navLinks.forEach((link) => {
         link.classList.remove("active");
-        if (link.getAttribute("href").includes(current)) {
+        if (current && link.getAttribute("href").includes(current)) {
             link.classList.add("active");
         }
     });
 });
-
 
 // --- Faculty Secret Reveal Logic ---
 function revealSecret(cardElement, secretMessage) {
