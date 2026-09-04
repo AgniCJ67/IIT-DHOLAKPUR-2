@@ -1,52 +1,11 @@
-// --- Scroll Effects (Sticky Nav, Progress Bar, & Active Links) ---
+// --- Sticky Navbar Shrink on Scroll ---
 window.addEventListener('scroll', () => {
-    // 1. Shrink Navbar
     const navbar = document.getElementById('navbar');
-    const scrollY = window.scrollY;
-    
-    if (scrollY > 50) {
+    if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-
-    // 2. Scroll Progress Bar at the top
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (scrollY / height) * 100;
-    document.getElementById("scroll-progress").style.width = scrolled + "%";
-
-    // 3. Highlight Active Link on Scroll (Bulletproof)
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-links a.nav-item");
-    
-    let current = "";
-
-    sections.forEach((section) => {
-        // The trigger line
-        const sectionTop = section.offsetTop - 300; 
-        
-        if (scrollY >= sectionTop) {
-            const sectionId = section.getAttribute("id");
-            // Only track it if it has a pill link in the nav
-            if (document.querySelector(`.nav-links a.nav-item[href="#${sectionId}"]`)) {
-                current = sectionId;
-            }
-        }
-    });
-
-    // --- THE FIX: Check if we are at the absolute bottom of the page ---
-    if ((window.innerHeight + Math.ceil(scrollY)) >= document.body.offsetHeight - 100) {
-        current = "placements"; // Force it to Placements
-    }
-
-    // Apply the highlight
-    navLinks.forEach((link) => {
-        link.classList.remove("active");
-        // Using exact match to prevent bugs
-        if (current && link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
-        }
-    });
 });
 
 // --- Faculty Secret Reveal Logic ---
