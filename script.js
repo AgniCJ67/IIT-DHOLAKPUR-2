@@ -15,29 +15,35 @@ window.addEventListener('scroll', () => {
     const scrolled = (scrollY / height) * 100;
     document.getElementById("scroll-progress").style.width = scrolled + "%";
 
-    // 3. Highlight Active Link on Scroll (Fixed for Placements)
+    // 3. Highlight Active Link on Scroll (Bulletproof)
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-links a.nav-item");
     
     let current = "";
 
     sections.forEach((section) => {
-        // Offset determines how early the highlight triggers before hitting the section
-        const sectionTop = section.offsetTop - 250; 
+        // The trigger line
+        const sectionTop = section.offsetTop - 300; 
         
         if (scrollY >= sectionTop) {
             const sectionId = section.getAttribute("id");
-            // ONLY update 'current' if this section actually has a nav-item pill link
+            // Only track it if it has a pill link in the nav
             if (document.querySelector(`.nav-links a.nav-item[href="#${sectionId}"]`)) {
                 current = sectionId;
             }
         }
     });
 
+    // --- THE FIX: Check if we are at the absolute bottom of the page ---
+    if ((window.innerHeight + Math.ceil(scrollY)) >= document.body.offsetHeight - 100) {
+        current = "placements"; // Force it to Placements
+    }
+
     // Apply the highlight
     navLinks.forEach((link) => {
         link.classList.remove("active");
-        if (current && link.getAttribute("href").includes(current)) {
+        // Using exact match to prevent bugs
+        if (current && link.getAttribute("href") === `#${current}`) {
             link.classList.add("active");
         }
     });
