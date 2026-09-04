@@ -4,3 +4,6 @@ Official portal for IIT Dholakpur. Features academic department breakdowns, facu
 
 ## Quick Setup
 Open `index.html` directly in any web browser to view the site locally.
+
+Visit Site: [Click here](https://agnicj67.github.io/IIT-DHOLAKPUR-2/)
+
