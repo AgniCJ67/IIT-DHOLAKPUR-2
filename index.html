@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
     <title>IIT Dholakpur | The Premier Institute</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Funnel+Display:wght@300..800&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Outfit:wght@100..900&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -119,19 +118,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Tun Tun Sweets Ltd.</td>
-                            <td>Chief Tasting Officer (CTO)</td>
-                            <td><span class="badge success">1.5 Crore Laddoos</span></td>
+                            <td data-label="Recruiting Company">Tun Tun Sweets Ltd.</td>
+                            <td data-label="Designation / Role">Chief Tasting Officer (CTO)</td>
+                            <td data-label="Highest Package (CTC)"><span class="badge success">1.5 Crore Laddoos</span></td>
                         </tr>
                         <tr>
-                            <td>Dholakpur Royal Guards</td>
-                            <td>Spear Holder (Senior Level)</td>
-                            <td><span class="badge warning">5000 Gold Coins + Lunch</span></td>
+                            <td data-label="Recruiting Company">Dholakpur Royal Guards</td>
+                            <td data-label="Designation / Role">Spear Holder (Senior Level)</td>
+                            <td data-label="Highest Package (CTC)"><span class="badge warning">5000 Gold Coins + Lunch</span></td>
                         </tr>
                         <tr>
-                            <td>Kalia Bully Inc.</td>
-                            <td>Henchman (Twin Role: Dholu/Bholu)</td>
-                            <td><span class="badge danger">2 Slaps & 10 Laddoos</span></td>
+                            <td data-label="Recruiting Company">Kalia Bully Inc.</td>
+                            <td data-label="Designation / Role">Henchman (Twin Role: Dholu/Bholu)</td>
+                            <td data-label="Highest Package (CTC)"><span class="badge danger">2 Slaps & 10 Laddoos</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -143,7 +142,7 @@
             <p>Ready to join the elite 0.01%? Enter your JEE Advanced score to validate your credentials.</p>
             
             <div class="input-group">
-                <input type="number" id="jee-score" placeholder="Enter score (out of 330)" max="330">
+                <input type="number" id="jee-score" placeholder="Enter score (out of 330)" min="0" max="330">
             </div>
 
             <button id="apply-btn" class="primary-btn">Initiate Application Process</button>
