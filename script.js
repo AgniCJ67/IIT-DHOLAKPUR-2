@@ -25,15 +25,14 @@ function revealSecret(cardElement, secretMessage) {
 }
 
 // --- Admission Logic (The Score Check) ---
-document.getElementById('apply-btn').addEventListener('click', function() {
-    const btn = this;
+function processApplication() {
+    const btn = document.getElementById('apply-btn');
     const scoreInput = document.getElementById('jee-score').value;
     const trollBox = document.getElementById('troll-box');
     const trollMessage = document.getElementById('troll-message');
     const alertIcon = document.getElementById('alert-icon');
     const alertTitle = document.getElementById('alert-title');
     
-    // Prevent empty submissions
     if (scoreInput === "") {
         alert("Please enter your JEE score! We need to verify your lack of intelligence.");
         return;
@@ -41,24 +40,20 @@ document.getElementById('apply-btn').addEventListener('click', function() {
 
     const score = parseFloat(scoreInput);
 
-    // Artificial loading state for realism
     btn.innerText = "Scanning Brain Cells...";
     btn.style.opacity = "0.7";
     btn.disabled = true;
     
-    // Hide box and reset styles if it was already open
     trollBox.classList.remove('show');
     trollBox.classList.remove('success-mode');
 
     setTimeout(() => {
         if (score < 5) {
-            // ACCEPTED LOGIC: Score is gloriously low
             alertIcon.innerText = "✅";
             alertTitle.innerText = "Admission Granted!";
             trollBox.classList.add('success-mode');
             trollMessage.innerText = `Congratulations! You scored ${score}/330. Your spectacular lack of academic capability perfectly aligns with our Laddoo Engineering standards. Welcome to IIT Dholakpur!`;
         } else {
-            // REJECTED LOGIC: Score is 5 or higher (Too smart)
             alertIcon.innerText = "❌";
             alertTitle.innerText = "Application Rejected";
             
@@ -73,15 +68,20 @@ document.getElementById('apply-btn').addEventListener('click', function() {
             trollMessage.innerText = rejectionMessages[Math.floor(Math.random() * rejectionMessages.length)];
         }
         
-        // Show the box
         trollBox.classList.add('show');
         
-        // Reset button
         btn.innerText = "Initiate Application Process";
         btn.style.opacity = "1";
         btn.disabled = false;
 
-        // Scroll smoothly to the result
         trollBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 1500); // 1.5 second fake loading delay
+    }, 1200);
+}
+
+document.getElementById('apply-btn').addEventListener('click', processApplication);
+
+document.getElementById('jee-score').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        processApplication();
+    }
 });
