@@ -472,27 +472,24 @@ footer {
     border-bottom-right-radius: 4px;
 }
 
-/* --- Active Nav Link Highlight --- */
+/* --- Active Nav Link Highlight (Highlight Pill Effect) --- */
 .nav-links a.nav-item {
     position: relative;
+    padding: 8px 16px; /* Adds space inside the link for the background */
+    border-radius: 25px; /* Makes it a round pill shape */
+    transition: all 0.3s ease;
 }
 
-.nav-links a.nav-item::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0%;
-    height: 2px;
-    background-color: var(--primary);
-    transition: width 0.3s ease;
-}
-
-.nav-links a.nav-item.active {
+/* When hovering over any link */
+.nav-links a.nav-item:hover {
+    background-color: rgba(230, 81, 0, 0.08); /* Faint orange background */
     color: var(--primary);
 }
 
-.nav-links a.nav-item.active::after {
-    width: 100%;
+/* The actively read section (Scrollspy) */
+.nav-links a.nav-item.active {
+    background-color: rgba(230, 81, 0, 0.15); /* Stronger orange highlight */
+    color: var(--primary);
+    font-weight: 800; /* Makes the text bolder so it stands out */
+    box-shadow: inset 0 0 0 1px rgba(230, 81, 0, 0.3); /* Subtle border ring */
 }
-
